@@ -9,11 +9,15 @@ class User(models.Model):
     name = models.CharField(max_length=50, null=False)
     last_name = models.CharField(max_length=50, null=False)
     email = models.EmailField(max_length=45, null=False)
-    password = models.CharField(null=False)
+    password = models.CharField(max_length=10, null=False)
     status = models.BooleanField(null=False)
     date_start = models.DateTimeField(null=False)
 
-class Nomina(models.Model):
-    id_nomina = models.AutoField(primary_key=True)
-    code_user = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
-    date = models.DateField(null=False)
+class Payroll(models.Model):
+    id_payroll = models.AutoField(primary_key=True)
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
+    payment_date = models.DateField(null=False)
+
+class Roles(models.Model):
+    id_roles = models.AutoField(primary_key=True)
+    rol_name = models.CharField(max_length=50, null=False)
